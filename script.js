@@ -1,4 +1,5 @@
 let students = JSON.parse(localStorage.getItem('students')) || [];
+
 async function init() {
     if (students.length === 0) {
         try {
@@ -19,7 +20,8 @@ function renderTable(data = students) {
         <tr class="hover:bg-slate-50 transition">
             <td class="p-5 font-medium text-slate-800">${s.name}</td>
             <td class="p-5 text-slate-600">${s.major}</td>
-            <td class="p-5 text-center">
+            <td class="p-5 text-center flex justify-center gap-2">
+                <button onclick="editStudent(${index})" class="text-blue-500 hover:bg-blue-50 px-3 py-1 rounded-lg transition">Edit</button>
                 <button onclick="deleteStudent(${index})" class="text-red-500 hover:bg-red-50 px-3 py-1 rounded-lg transition">Delete</button>
             </td>
         </tr>
@@ -37,15 +39,30 @@ function addStudent() {
     renderTable();
 }
 
+function editStudent(index) {
+    const s = students[index];
+    const newName = prompt("Edit Student Name:", s.name);
+    const newMajor = prompt("Edit Major:", s.major);
+    
+    if (newName !== null && newMajor !== null) {
+        students[index] = { name: newName, major: newMajor };
+        localStorage.setItem('students', JSON.stringify(students));
+        renderTable();
+    }
+}
+
+function deleteStudent(index) {
+    if(confirm("Are you sure you want to delete?")) {
+        students.splice(index, 1);
+        localStorage.setItem('students', JSON.stringify(students));
+        renderTable();
+    }
+}
+
 function searchStudent() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const filtered = students.filter(s => s.name.toLowerCase().includes(term));
     renderTable(filtered);
 }
 
-function deleteStudent(index) {
-    students.splice(index, 1);
-    localStorage.setItem('students', JSON.stringify(students));
-    renderTable();
-}
 init();
