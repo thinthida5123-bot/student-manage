@@ -1,4 +1,17 @@
 let students = JSON.parse(localStorage.getItem('students')) || [];
+async function init() {
+    if (students.length === 0) {
+        try {
+            const response = await fetch('students.json');
+            if (!response.ok) throw new Error("Could not fetch students.json");
+            students = await response.json();
+            localStorage.setItem('students', JSON.stringify(students));
+        } catch (error) {
+            console.error("Error loading initial data:", error);
+        }
+    }
+    renderTable();
+}
 
 function renderTable(data = students) {
     const table = document.getElementById('studentTable');
@@ -35,5 +48,4 @@ function deleteStudent(index) {
     localStorage.setItem('students', JSON.stringify(students));
     renderTable();
 }
-
-renderTable();
+init();
