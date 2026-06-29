@@ -1,0 +1,14 @@
+[
+    {"id": 1, "name": "Soe Soe", "major": "Computer Science"},
+    {"id": 2, "name": "Nyi Nyi", "major": "Cyber Security"},
+    {"id": 3, "name": "Aung Aung", "major": "Networking"},
+    {"id": 4, "name": "Htet Htet", "major": "English"},
+    {"id": 5, "name": "Min Min", "major": "Physics"},
+    {"id": 6, "name": "Su Su", "major": "Mathematics"},
+    {"id": 7, "name": "Tun Tun", "major": "Computer Science"},
+    {"id": 8, "name": "Nilar", "major": "Information Technology"},
+    {"id": 9, "name": "Ko Ko", "major": "Engineering"},
+    {"id": 10, "name": "Aye Aye", "major": "Chemistry"},
+    {"id": 11, "name": "Mya Mya", "major": "Information Technology"},
+    {"id": 12, "name": "Kyaw Kyaw", "major": "Business Management"},
+]
